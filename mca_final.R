@@ -1,0 +1,15 @@
+df <- read.csv(file = "C:/Users/jugvi/OneDrive/Documents/Sem 2/Adv Stat Project/Book3.csv", header = TRUE, sep = ',')
+View(df)
+install.packages(c("FactoMineR", "factoextra"))
+library("FactoMineR")
+library("factoextra")
+df_pcos <- df[df$PCOS..Y.N. != "No",]
+View(df_pcos)
+df_use2 <- subset(df_pcos, select = -c(1, 2,3,4,5,6,7,8,9,10,11,12,13,14,16,17,18,19,20,21,22,23,24,25,26,27,28,36,37,38,39,40,41,42,43))
+View(df_use2)
+res.mca1 <-MCA(df_use2,graph=FALSE)
+print(res.mca1)
+eig.val <- get_eigenvalue(res.mca1)
+dev.off()
+fviz_screeplot(res.mca1, addlabels = TRUE, ylim = c(0, 45))
+
